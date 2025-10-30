@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
-import TodoTable from "./components/TodoTable";
-import NewTodoForm from "./components/NewTodoForm";
+import { TodoTable } from "./components/TodoTable";
+import { NewTodoForm } from "./components/NewTodoForm";
 
-function App() {
+export const App = () => {
   const [showForm, setShowForm] = useState(false);
   const [todos, setTodos] = useState([
     { id: 1, description: "Buy groceries", assignedTo: "Alice" },
@@ -12,7 +12,7 @@ function App() {
     { id: 4, description: "charge phone battary", assignedTo: "Alice" },
   ]);
 
-  const handleAddTodo = (descriptionval, assignedToval) => {
+  const handleAddTodo = (descriptionval: string, assignedToval: string) => {
     let rowNumber = 0;
     if (todos.length > 0) {
       rowNumber = todos[todos.length - 1].id + 1;
@@ -27,7 +27,7 @@ function App() {
     setTodos((todos) => [...todos, newTodo]);
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id: number) => {
     let filterred = todos.filter(function (value) {
       return value.id !== id;
     });
@@ -52,6 +52,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};

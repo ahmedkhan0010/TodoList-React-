@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-function NewTodoForm(props) {
+export const NewTodoForm: React.FC<{ handleAddTodo: Function }> = (props) => {
   const [description, setDescription] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
 
-  const submitForm = (event) => {
+  const submitForm = (event: React.FormEvent) => {
     event.preventDefault();
-    if (description.length !== "" && assignedTo !== "") {
+    if (description.trim().length > 0 && assignedTo.trim().length > 0) {
       props.handleAddTodo(description, assignedTo);
       setDescription("");
       setAssignedTo("");
@@ -29,7 +29,6 @@ function NewTodoForm(props) {
         <div className="mb-3">
           <label className="form-label">Description</label>
           <textarea
-            type="text"
             className="form-control"
             rows={3}
             required
@@ -38,7 +37,7 @@ function NewTodoForm(props) {
           ></textarea>
         </div>
         <button
-          type="buttton"
+          type="button"
           className="btn btn-primary mt-3"
           onClick={submitForm}
         >
@@ -47,6 +46,4 @@ function NewTodoForm(props) {
       </form>
     </div>
   );
-}
-
-export default NewTodoForm;
+};
